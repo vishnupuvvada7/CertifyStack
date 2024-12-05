@@ -1,0 +1,244 @@
+/* Admin Profile Page Styles */
+.main-content {
+    padding: 2rem;
+    margin-left: 230px;
+    background-color: #f8f9fa;
+    min-height: 90vh;
+}
+
+.profile-container {
+    max-width: 900px;
+    margin: -1rem auto;
+}
+
+.profile-header {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #000044 0%, #000066 100%);
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #84e1e1 0%, #80dfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-content p {
+    color: #fff;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.profile-content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.profile-nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    background: none;
+    color: #718096;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 0, 102, 0.05);
+    color: #000066;
+}
+
+.nav-btn.active {
+    background: #000066;
+    color: white;
+}
+
+.nav-btn .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.profile-sections {
+    padding: 2rem;
+}
+
+.profile-section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.profile-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header {
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+.profile-form {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.form-group label .material-symbols-outlined {
+    font-size: 1.25rem;
+    color: #000066;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #f8f9fa;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #000066;
+    box-shadow: 0 0 0 3px rgba(0, 0, 102, 0.1);
+    background-color: white;
+}
+
+.form-input[readonly] {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #000066;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #000044;
+    transform: translateY(-2px);
+}
+
+.btn-primary .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .profile-header {
+        padding: 1.5rem;
+    }
+
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .profile-nav {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    .nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile-sections {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}

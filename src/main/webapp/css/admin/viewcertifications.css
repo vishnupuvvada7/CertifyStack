@@ -1,0 +1,253 @@
+/* View Certifications Page Styles */
+.main-content {
+    padding: 2rem;
+    margin-left: 230px;
+    background-color: #f8f9fa;
+    min-height: 90vh;
+}
+
+.page-header {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #000044 0%, #000066 100%);
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #84e1e1 0%, #80dfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-content p {
+    color: #fff;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.search-bar {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: auto;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin: auto;
+}
+
+.filters select {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filters select:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.filters select option {
+    background: #000066;
+    color: white;
+}
+
+.certifications-table {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table-container {
+    overflow-x: auto;
+    max-height: calc(100vh - 300px);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 102, 0.2) transparent;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 102, 0.2);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 102, 0.4);
+}
+
+.certifications-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+.certifications-table th {
+    background: #000066;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #80dfff;
+    font-size: 0.95rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.certifications-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: #2d3748;
+}
+
+.cert-name,
+.provider-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cert-name .material-symbols-outlined {
+    color: #000066;
+}
+
+.provider-name .material-symbols-outlined {
+    color: #4a5568;
+}
+
+.level-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.level-badge.beginner {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.level-badge.intermediate {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.level-badge.advanced {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.edit-btn {
+    background: #e2e8f0;
+    color: #2d3748;
+}
+
+.edit-btn:hover {
+    background: #cbd5e0;
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .header-actions {
+        flex-direction: column;
+    }
+
+    .search-bar {
+        max-width: 100%;
+    }
+
+    .filters {
+        width: 100%;
+    }
+
+    .filters select {
+        flex: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .page-header {
+        padding: 1.5rem;
+    }
+
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+}
