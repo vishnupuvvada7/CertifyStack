@@ -134,6 +134,7 @@ body {
     font-size: 0.95rem;
 }
 
+
 /* Form Groups */
 .form-group {
     position: relative;
@@ -154,7 +155,6 @@ body {
 
 .form-group select {
     appearance: none;
-    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); */
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1.2em;
@@ -173,10 +173,31 @@ body {
     pointer-events: none;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #3b82f6;
-    outline: none;
+/* Updated Input Validation Styles */
+.input-field {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.field-focus:invalid {
+    border-color: #f87171;
+    box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2);
+}
+
+.field-invalid {
+    border-color: #f87171;
+}
+
+.error-message {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    font-size: 0.75rem;
+    color: #f87171;
+}
+
+.field-invalid + label + .error-message {
+    display: block;
 }
 
 .form-group input:focus ~ label,
@@ -189,6 +210,36 @@ body {
     background: #1b2335;
     padding: 0 0.5rem;
     color: #3b82f6;
+}
+
+/* Password Requirements */
+.password-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    transition: color 0.3s ease;
+}
+
+.requirement::before {
+    content: "●";
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.requirement.valid {
+    color: #22c55e;
+}
+
+.requirement.invalid {
+    color: #ef4444;
 }
 
 /* Date Group */
@@ -252,12 +303,13 @@ body {
     }
 }
 
- input:-webkit-autofill,
+/* Autofill Styles */
+input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  background-color: #1b2335 ; /* Your custom color */
-  color: #fff;
-  -webkit-text-fill-color: #fff !important;
-  -webkit-box-shadow: 0 0 0px 1000px #1b2335 inset; /* Prevent white flash */
-  caret-color: #fff;
+    background-color: #1b2335;
+    color: #fff;
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0px 1000px #1b2335 inset;
+    caret-color: #fff;
 }

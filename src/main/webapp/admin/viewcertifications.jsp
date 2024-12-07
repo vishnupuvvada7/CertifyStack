@@ -84,9 +84,9 @@ if(a==null){
                             <td>$${cert.cost}</td>
                             <td>${cert.validity} years</td>
                             <td class="actions">
-                                <button class="action-btn edit-btn" title="Edit">
+                                <!-- <button class="action-btn edit-btn" title="Edit">
                                     <span class="material-symbols-outlined">edit</span>
-                                </button>
+                                </button> -->
                                 <a href="deletecertification/${cert.id}" class="action-btn delete-btn" title="Delete">
                                     <span class="material-symbols-outlined">delete</span>
                                 </a>

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.klef.jfsd.model.Certificate;
+import com.klef.jfsd.model.Renewal;
 import com.klef.jfsd.model.User;
 import com.klef.jfsd.service.UserService;
 
@@ -176,6 +177,7 @@ public class CertificateController {
 	
 	@PostMapping("renewalcertificate/{id}")
 	public ModelAndView renewalcertificate(HttpServletRequest request,@RequestParam int id, @RequestParam("certificateFile") MultipartFile file) throws Exception{
+		
 		String name = request.getParameter("name");
 	    String issuingOrganization = request.getParameter("issuingOrganization");
 	    LocalDate issueDate = LocalDate.parse(request.getParameter("issueDate"));
@@ -189,27 +191,27 @@ public class CertificateController {
 	    HttpSession session = request.getSession();
 	    User u = (User) session.getAttribute("user");
 	    
-	    Certificate c = new Certificate();
+	    Renewal r = new Renewal();
 	    
-	    c.setId(id);
-	    c.setName(name);
-	    c.setOrganization(issuingOrganization);
-	    c.setIssuedate(issueDate);
-	    c.setExpirydate(expiryDate);
-	    c.setValidationid(certificationNumber);
-	    c.setCdoc(blob);
-	    c.setIsglobal(isglobal);
-	    c.setCinfo(notes);
-	    c.setUsername(u.getUsername());
-	    c.setStatus(status);
+	    r.setCid(id);
+	    r.setName(name);
+	    r.setOrganization(issuingOrganization);
+	    r.setIssuedate(issueDate);
+	    r.setExpirydate(expiryDate);
+	    r.setValidationid(certificationNumber);
+	    r.setCdoc(blob);
+	    r.setIsglobal(isglobal);
+	    r.setCinfo(notes);
+	    r.setUsername(u.getUsername());
+	    r.setStatus(status);
 	    
 
-	    String msg = userService.updateCertificate(c);
+	    String msg = userService.addRenewal(r);
 	    
-	    List<Certificate> certificates = userService.viewCertsByUser(u.getUsername());
-		ModelAndView mv = new ModelAndView("user/certifications");
-		mv.addObject("certificates", certificates);
-		mv.addObject("addedmessage", msg);
+		ModelAndView mv = new ModelAndView();
+		List<Certificate> certificates = userService.viewCertsByUserandStatus(u.getUsername(),"EXPIRINGSOON");
+		mv.addObject("renewals", certificates);
+		mv.setViewName("user/renewals");
 	    
 	    return mv;
 	}

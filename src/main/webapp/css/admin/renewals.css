@@ -168,6 +168,7 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .view-btn {

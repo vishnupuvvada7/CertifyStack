@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.klef.jfsd.model.Certificate;
 import com.klef.jfsd.model.Contact;
+import com.klef.jfsd.model.Renewal;
 import com.klef.jfsd.model.User;
 import com.klef.jfsd.repository.CertificateRepository;
 import com.klef.jfsd.repository.ContactRepository;
+import com.klef.jfsd.repository.RenewalRepository;
 import com.klef.jfsd.repository.UserRepository;
 
 @Service
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private ContactRepository contactRepository;
+	
+	@Autowired
+	private RenewalRepository renewalRepository;
 
 
 	@Override
@@ -121,7 +126,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public String deleteCertificate(int id) {
-		certificateRepository.deleteById(id);
+		renewalRepository.deleteById(id);
+		
 		return "Certificate Deleted Successfully";
 	}
 	
@@ -180,8 +186,27 @@ public class UserServiceImpl implements UserService{
 		return "Message Sent Successfully";
 	}
 
-	
+	@Override
+	public String addRenewal(Renewal r) {
+		renewalRepository.save(r);
+		return "Certificate added as renewal";
+	}
 
+	@Override
+	public long activeCertificationscount() {
+		long count = certificateRepository.activecertificates();
+		return count;
+	}
+
+	@Override
+	public long expiringCertificationscount() {
+		return certificateRepository.expiringcertificates();
+	}
+
+	@Override
+	public long globalCertificationscount() {
+		return certificateRepository.globalcertificatescount();
+	}
 	
 
 }

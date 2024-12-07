@@ -63,6 +63,7 @@ public class UserController {
 
 		String msg = userService.userRegistration(u);
 		mv.addObject("regsuccessmessage", msg);
+		mv.addObject("toastType", "success");
 		return mv;
 	}
 
@@ -70,6 +71,12 @@ public class UserController {
 	@GetMapping("userhome")
 	public ModelAndView userhome() {
 		ModelAndView mv = new ModelAndView("user/userhome");
+		long activeCertifications = userService.activeCertificationscount();
+		mv.addObject("activeCertifications",activeCertifications);
+		long expiringCertifications = userService.expiringCertificationscount();
+		mv.addObject("expiringCertifications",expiringCertifications);
+		long globalCertifications = userService.globalCertificationscount();
+		mv.addObject("globalCertifications",globalCertifications);
 		return mv;
 	}
 

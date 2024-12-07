@@ -4,6 +4,48 @@
 <head>
     <title>Login | CertifyStack</title>
     <link type="text/css" rel="stylesheet" href="css/login.css">
+    <style>
+        .toast {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            opacity: 0.9;
+            z-index: 1000;
+            transition: opacity 0.5s, transform 0.5s;
+            max-width: 300px;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .toast.success {
+            background-color: #4caf50;
+        }
+
+        .toast.error {
+            background-color: #f44336;
+        }
+
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+
+        .toast .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <%@include file="navbar.jsp" %>
@@ -16,30 +58,17 @@
             <span></span>
         </div>
 
-        <h4 class="error-message"><c:out value="${fmessage}"></c:out></h4>
+        <% if (request.getAttribute("regsuccessmessage") != null) { %>
+        <div id="toast" class="toast <%= request.getAttribute("toastType") %>">
+            <span id="toastMessage"><%= request.getAttribute("regsuccessmessage") %></span>
+            <button class="close-btn" onclick="closeToast()">&times;</button>
+        </div>
+    	<% } %>
         
-        <% 
-            HttpSession s = request.getSession(false);
-            if (s != null && "user".equals(s.getAttribute("user"))) { 
-        %>
-            <div class="toast" id="toast">
-                <div class="toast-content">
-                    <div class="check">✓</div>
-                    <div class="message">Registered Successfully</div>
-                </div>
-            </div>
-            <script>
-                document.getElementById("toast").classList.add("show");
-                setTimeout(() => {
-                    document.getElementById("toast").classList.remove("show");
-                }, 4000);
-                <% session.removeAttribute("user"); %>
-            </script>
-        <% 
-            } 
-        %>
+          
 
         <div class="login-container">
+        <h4 align="center" style="color:red" ><c:out value="${message}" ></c:out> </h4>
             <div class="form-header">
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Please enter your details</p>
@@ -76,6 +105,28 @@
         </div>
     </main>
     
-    
+    <script>
+        // Show toast if present
+        document.addEventListener("DOMContentLoaded", function() {
+            const toast = document.getElementById("toast");
+            if (toast) {
+                toast.style.display = "block";
+                setTimeout(() => {
+                    if (!toast.classList.contains('hide')) {
+                        toast.classList.add("hide");
+                        toast.addEventListener("transitionend", () => toast.remove());
+                    }
+                }, 3000);
+            }
+        });
+
+        function closeToast() {
+            const toast = document.getElementById("toast");
+            if (toast) {
+                toast.classList.add("hide");
+                toast.addEventListener("transitionend", () => toast.remove());
+            }
+        }
+    </script>
 </body>
 </html>

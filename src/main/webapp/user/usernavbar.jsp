@@ -33,33 +33,19 @@ if(u==null){
         </a>
         <a href="${pageContext.request.contextPath}/renewals" class="nav-item">
             <i class="fas fa-sync"></i> Renewals
-        </a>
-        <%-- <div class="nav-item notifications-dropdown">
-            <button class="notifications-btn">
-                <i class="fas fa-bell"></i>
-                <c:if test="${notificationCount > 0}">
-                    <span class="notification-badge">${notificationCount}</span>
-                </c:if>
-            </button>
-            <div class="dropdown-content">
-                <c:forEach items="${notifications}" var="notification">
-                    <div class="notification-item">
-                        <p>${notification.message}</p>
-                        <small>${notification.date}</small>
-                    </div>
-                </c:forEach>
-            </div>
-        </div> --%>
+        </a> 
+
         <div class="nav-item profile-dropdown">
             <button class="profile-btn">
                 <i class="fas fa-user"></i> ${user.name}
             </button>
-            <div class="dropdown-content">
+             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/userprofile">Profile Settings</a>
                 <a href="${pageContext.request.contextPath}/usercontact">Contact Us</a>
                 <a href="${pageContext.request.contextPath}/userhelp">Help & Support</a>
                 <a href="${pageContext.request.contextPath}/userlogout" class="logout-btn">Logout</a>
-            </div>
+            </div> 
+            
         </div>
     </div>
 </nav>

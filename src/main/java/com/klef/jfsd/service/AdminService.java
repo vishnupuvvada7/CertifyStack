@@ -6,6 +6,7 @@ import com.klef.jfsd.model.Admin;
 import com.klef.jfsd.model.Certificate;
 import com.klef.jfsd.model.Certifications;
 import com.klef.jfsd.model.Contact;
+import com.klef.jfsd.model.Renewal;
 import com.klef.jfsd.model.User;
 
 public interface AdminService {
@@ -21,7 +22,7 @@ public interface AdminService {
 	public String deleteUser(int id);
 	
 	public String approveGlobal(int id, String status);
-	public String approveRenewal(int id, String status);
+	public String approveRenewal(int id);
 	public String AddCertification(Certifications cert);
 	public List<Certificate> viewSubmittedCerts(String isglobal);
 	public List<Certificate> viewRenewalCerts(String status);
@@ -43,4 +44,6 @@ public interface AdminService {
 	public long adminscount();
 	public long activecertificates();
 	public long pendingcertificates();
+	public long pendingRenewals();
+	public List<Renewal> viewRenewals();
 }

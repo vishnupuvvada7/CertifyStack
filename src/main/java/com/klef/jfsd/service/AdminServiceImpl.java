@@ -9,11 +9,13 @@ import com.klef.jfsd.model.Admin;
 import com.klef.jfsd.model.Certificate;
 import com.klef.jfsd.model.Certifications;
 import com.klef.jfsd.model.Contact;
+import com.klef.jfsd.model.Renewal;
 import com.klef.jfsd.model.User;
 import com.klef.jfsd.repository.AdminRepository;
 import com.klef.jfsd.repository.CertificateRepository;
 import com.klef.jfsd.repository.CertificationsRepository;
 import com.klef.jfsd.repository.ContactRepository;
+import com.klef.jfsd.repository.RenewalRepository;
 import com.klef.jfsd.repository.UserRepository;
 
 @Service
@@ -33,6 +35,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	private CertificationsRepository certsRepository;
+	
+	@Autowired
+	private RenewalRepository renewalRepository;
 	
 	@Override
 	public String addContact(Contact c) {
@@ -93,8 +98,25 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public String approveRenewal(int id, String status) {
-		certificateRepository.approveRenewal(status, id);
+	public String approveRenewal(int id) {
+		Renewal r = (Renewal) renewalRepository.findById(id).get();
+		
+		Certificate c = new Certificate();
+		c.setId(r.getCid());
+		c.setCdoc(r.getCdoc());
+		c.setCinfo(r.getCinfo());
+		c.setExpirydate(r.getExpirydate());
+		c.setIsglobal(r.getIsglobal());
+		c.setIssuedate(r.getIssuedate());
+		c.setName(r.getName());
+		c.setOrganization(r.getOrganization());
+		c.setStatus("ACTIVE");
+		c.setUsername(r.getUsername());
+		c.setValidationid(r.getValidationid());
+		
+		certificateRepository.save(c);
+		
+		renewalRepository.deleteById(id);
 		return "Certificate Renewed Successfully";
 	}
 
@@ -195,6 +217,18 @@ public class AdminServiceImpl implements AdminService{
 	public long pendingcertificates() {
 		return certificateRepository.pendingcertificates();
 	}
+	
+	@Override
+	public long pendingRenewals() {
+		return renewalRepository.count();
+	}
+
+	@Override
+	public List<Renewal> viewRenewals() {
+		return renewalRepository.findAll();
+	}
+
+	
 
 	
 

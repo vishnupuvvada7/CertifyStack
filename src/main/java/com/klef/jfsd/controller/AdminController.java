@@ -15,6 +15,7 @@ import com.klef.jfsd.model.Admin;
 import com.klef.jfsd.model.Certificate;
 import com.klef.jfsd.model.Certifications;
 import com.klef.jfsd.model.Contact;
+import com.klef.jfsd.model.Renewal;
 import com.klef.jfsd.model.User;
 import com.klef.jfsd.service.AdminService;
 
@@ -38,6 +39,8 @@ public class AdminController {
 		mv.addObject("activeCertifications",activeCertifications);
 		long pendingApprovals = adminService.pendingcertificates();
 		mv.addObject("pendingApprovals",pendingApprovals);
+		long pendingRenewals = adminService.pendingRenewals();
+		mv.addObject("pendingRenewals",pendingRenewals);
 		return mv;
 	}
 	
@@ -128,9 +131,16 @@ public class AdminController {
 	@GetMapping("approverenewals")
 	public ModelAndView approverenewals() {
 		ModelAndView mv = new ModelAndView("admin/renewals");
-		List<Certificate> certs = adminService.viewRenewalCerts("RENEWAL");
+		List<Renewal> certs = adminService.viewRenewals();
 		mv.addObject("renewals", certs);
 		return mv;
+	}
+	
+	@GetMapping("approverenewal")
+	public String approverenewal(@RequestParam int id) {
+		adminService.approveRenewal(id);
+		System.out.println(id);
+		return "redirect:/approverenewals";
 	}
 	
 	@GetMapping("addcert")

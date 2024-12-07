@@ -74,9 +74,14 @@ if(u==null){
                                         <span class="status-badge ${cert.isglobal}">${cert.isglobal}</span>
                                     </div>
                                     <div class="cert-body">
+                                    	
                                         <p>
                                             <span class="material-symbols-outlined">business</span>
                                             ${cert.organization}
+                                        </p>
+                                        <p>
+                                            <span class="material-symbols-outlined">browse_gallery</span>
+                                            ${cert.status}
                                         </p>
                                         <p>
                                             <span class="material-symbols-outlined">event</span>

@@ -117,12 +117,13 @@ public class MainController {
 		if (u != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", u);
+			System.out.println(username);
 			mv.setViewName("redirect:/userhome");
-			mv.addObject("loginsuccessmessage", "Login Success");
+			return mv;
 		}
 		
 		mv.setViewName("login");
-		mv.addObject("loginfailmessage", "Login Failed / User Does Not Exist");
+		mv.addObject("message", "Login Failed");
 		
 		return mv;
 	}

@@ -74,7 +74,7 @@ if(u==null){
                     </div>
                     <div class="stat-info">
                         <h3>Global Certifications</h3>
-                        <p class="stat-number">${recentCertifications}</p>
+                        <p class="stat-number">${globalCertifications}</p>
                         
                     </div>
                 </div>

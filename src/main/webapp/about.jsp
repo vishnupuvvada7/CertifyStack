@@ -63,7 +63,7 @@
                             <p class="member-role">Team Member</p>
                             <div class="member-details">
                                 <p>Student at KL University</p>
-                                <p class="member-contact">917767162</p>
+                                <p class="member-contact">9177671162</p>
                             </div>
                         </div>
                     </div>

@@ -54,8 +54,14 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
 	@Query("select count(c) from Certificate c where c.status='ACTIVE'")
 	public long activecertificates();
 	
-	@Query("select count(c) from Certificate c where c.isglobal='SUBMITTED'")
+	@Query("select count(c) from Certificate c where c.status='EXPIRINGSOON'")
+	public long expiringcertificates();
+	
+	@Query("select count(c) from Certificate c where c.status='SUBMITTED'")
 	public long pendingcertificates();
+	
+	@Query("select count(c) from Certificate c where c.isglobal='GLOBAL'")
+	public long globalcertificatescount();
 }
 
 

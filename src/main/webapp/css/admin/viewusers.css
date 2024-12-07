@@ -244,6 +244,10 @@
     color: #2d3748;
 }
 
+.form-group input {
+	width: 95%;
+}
+
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
