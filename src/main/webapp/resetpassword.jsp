@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Forgot Password | CertifyStack</title>
+    <title>Reset Password | CertifyStack</title>
     <link type="text/css" rel="stylesheet" href="css/forgot.css">
 </head>
 <body>
-    <%@include file="navbar.jsp" %>
     <main class="main">
         <div class="background">
             <span></span>
@@ -18,25 +17,24 @@
 
         <div class="forgot-container">
             <div class="form-header">
-                <h2>Forgot Password</h2>
-                <p class="subtitle">Enter your email address to reset your password</p>
+                <h2>Reset Password</h2>
             </div>
 
-            <form action="forgotmail" method="post">
+            <form action="update-password" method="post">
+            <input type="hidden" name="token" value="${token}">
                 <div class="form-group">
-                    <input type="email" name="email" required id="email">
-                    <label for="email">Email Address</label>
+                    <input type="password" name="password" required id="password">
+                    <label for="password">New Password</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmpassword" required id="password">
+                    <label for="password">Confirm Password</label>
                 </div>
 
                 <div class="form-footer">
                     <button type="submit" name="reset" class="reset-btn">
                         <span>Reset Password</span>
                     </button>
-
-                    <p class="login-link">
-                        Remember your password? 
-                        <a href="login">Back to Login</a>
-                    </p>
                 </div>
             </form>
         </div>

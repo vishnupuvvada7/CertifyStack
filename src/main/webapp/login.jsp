@@ -69,6 +69,7 @@
 
         <div class="login-container">
         <h4 align="center" style="color:red" ><c:out value="${message}" ></c:out> </h4>
+        <h4 align="center" style="color:green" ><c:out value="${forgotmessage}" ></c:out> </h4>
             <div class="form-header">
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Please enter your details</p>

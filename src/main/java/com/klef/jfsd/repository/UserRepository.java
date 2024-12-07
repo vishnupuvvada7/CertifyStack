@@ -10,6 +10,7 @@ import com.klef.jfsd.model.User;
 
 
 
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
@@ -17,6 +18,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public User checkuserlogin(String username, String password);
 	
 	public User findById(int id);
-	
 	
 }

@@ -12,7 +12,7 @@ import com.klef.jfsd.model.User;
 public interface AdminService {
 	
 	public String addContact(Contact c);
-	public List<Contact> viewContacts();
+	public List<Contact> viewContacts(String status);
 	
 	
 	public Admin checkadminlogin(String username, String password);
@@ -46,4 +46,6 @@ public interface AdminService {
 	public long pendingcertificates();
 	public long pendingRenewals();
 	public List<Renewal> viewRenewals();
+	
+	public void updateContactStatus(int id);
 }

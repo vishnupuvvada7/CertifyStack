@@ -16,6 +16,7 @@ public class Contact {
 	private String name;
 	private String email;
 	private String message;
+	private String status;
 	public int getId() {
 		return id;
 	}
@@ -39,5 +40,11 @@ public class Contact {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

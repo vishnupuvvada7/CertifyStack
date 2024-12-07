@@ -5,6 +5,7 @@ import java.time.YearMonth;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private RenewalRepository renewalRepository;
 
+	@Autowired
+	 private JavaMailSender mailSender;
 
 	@Override
 	public String userRegistration(User u) {
@@ -207,6 +210,5 @@ public class UserServiceImpl implements UserService{
 	public long globalCertificationscount() {
 		return certificateRepository.globalcertificatescount();
 	}
-	
 
 }

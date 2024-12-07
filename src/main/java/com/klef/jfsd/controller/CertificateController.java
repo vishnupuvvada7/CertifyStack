@@ -206,7 +206,7 @@ public class CertificateController {
 	    r.setStatus(status);
 	    
 
-	    String msg = userService.addRenewal(r);
+	    userService.addRenewal(r);
 	    
 		ModelAndView mv = new ModelAndView();
 		List<Certificate> certificates = userService.viewCertsByUserandStatus(u.getUsername(),"EXPIRINGSOON");

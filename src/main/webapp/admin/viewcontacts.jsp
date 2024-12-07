@@ -101,7 +101,7 @@ if(a==null){
                 <span class="close-modal" onclick="closeReplyModal()">&times;</span>
             </div>
             <div class="modal-body">
-                <form id="replyForm" action="${pageContext.request.contextPath}/admin/sendReply" method="POST">
+                <form id="replyForm" action="${pageContext.request.contextPath}/sendContactReply" method="POST">
                     <input type="hidden" id="contactId" name="contactId">
                     <div class="form-group">
                         <label for="replyTo">To:</label>

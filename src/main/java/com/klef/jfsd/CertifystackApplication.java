@@ -12,5 +12,4 @@ public class CertifystackApplication {
 		SpringApplication.run(CertifystackApplication.class, args);
 		System.out.println("CertifyStack Started..............!!!");
 	}
-
 }

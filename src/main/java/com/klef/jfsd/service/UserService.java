@@ -35,6 +35,5 @@ public interface UserService {
 	public List<Certificate> viewCertsByFilter(String username,String filter);
 	
 	public String addContact(Contact c);
-	
-	
+
 }

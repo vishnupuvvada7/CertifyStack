@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import com.klef.jfsd.service.AdminService;
 import com.klef.jfsd.service.SuperAdminService;
 import com.klef.jfsd.service.UserService;
 
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -34,6 +37,9 @@ public class MainController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	 private JavaMailSender mailSender;
 
 	@GetMapping("/")
 	public ModelAndView home() {
@@ -77,6 +83,32 @@ public class MainController {
 		ModelAndView mv = new ModelAndView("forgot");
 		return mv;
 	}
+	
+	@PostMapping("forgotmail")
+	 public ModelAndView sendEmail(HttpServletRequest request) throws Exception {
+		 String toemail = request.getParameter("email");
+		 MimeMessage mimeMessage = mailSender.createMimeMessage();
+		 MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+		 
+		 helper.setTo(toemail);
+		 helper.setFrom("certifystackproject@gmail.com");
+		 String htmlContent =
+		 "<h3>Forgot Password</h3>" +
+		 "<p><strong>Link:</strong> <a href='http://localhost:9999/resetpassword'> Click here</a> to reset your password </p>" ;
+		 helper.setText(htmlContent, true);
+		 mailSender.send(mimeMessage);
+		 ModelAndView mv = new ModelAndView("login");
+		 mv.addObject("forgotmessage", "Email Sent Successfully");
+		 return mv;
+	 }
+	
+	
+	@GetMapping("resetpassword")
+	public ModelAndView resetpassword() {
+		ModelAndView mv = new ModelAndView("resetpassword");
+		return mv;
+	}
+	
 	
 	@GetMapping("login")
 	public ModelAndView userlogin() {
@@ -146,6 +178,7 @@ public class MainController {
 	    c.setName(name);
 	    c.setEmail(email);
 	    c.setMessage(message);
+	    c.setStatus("REPLY");
 
 	    String msg = adminService.addContact(c);
 	    if (msg!=null) {

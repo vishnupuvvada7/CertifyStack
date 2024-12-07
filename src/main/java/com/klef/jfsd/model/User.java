@@ -32,6 +32,7 @@ public class User {
 	private String contact;
 	@Column(name = "uprofilepic")
 	private Blob profilepic;
+
 	public int getId() {
 		return id;
 	}

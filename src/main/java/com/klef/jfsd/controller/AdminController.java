@@ -3,6 +3,8 @@ package com.klef.jfsd.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,7 @@ import com.klef.jfsd.model.Renewal;
 import com.klef.jfsd.model.User;
 import com.klef.jfsd.service.AdminService;
 
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -27,6 +30,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	 private JavaMailSender mailSender;
 	
 	@GetMapping("adminhome")
 	public ModelAndView adminhome() {
@@ -218,11 +224,36 @@ public class AdminController {
 	@GetMapping("viewcontacts")
 	public ModelAndView viewcontacts() {
 		ModelAndView mv = new ModelAndView();
-		List<Contact> contacts = adminService.viewContacts();
+		List<Contact> contacts = adminService.viewContacts("REPLY");
 		mv.addObject("contacts", contacts);
 		mv.setViewName("admin/viewcontacts");
 		return mv;
 	}
+	
+	@PostMapping("sendContactReply")
+	 public ModelAndView sendEmail(HttpServletRequest request) throws Exception {
+		 int id = Integer.parseInt(request.getParameter("contactId"));
+		 String toemail = request.getParameter("replyTo");
+		 String subject = request.getParameter("subject");
+		 String msg = request.getParameter("message");
+		 MimeMessage mimeMessage = mailSender.createMimeMessage();
+		 MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+		 System.out.println(msg);
+		 
+		 helper.setTo(toemail);
+		 helper.setSubject(subject);
+		 helper.setFrom("certifystackproject@gmail.com");
+		 String htmlContent =
+		 "<h3>Reply from CertisyStack regarding your Message</h3>" +
+		 "<p><strong>Subject:</strong> " + subject + "</p>" +
+		 "<p><strong>Message:</strong> " + msg + "</p>";
+		 helper.setText(htmlContent, true);
+		 mailSender.send(mimeMessage);
+		 adminService.updateContactStatus(id);
+		 ModelAndView mv = new ModelAndView("admin/viewcontacts");
+		 mv.addObject("message", "Email Sent Successfully");
+		 return mv;
+	 }
 
 	
 	@GetMapping("adminprofile")

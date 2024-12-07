@@ -46,8 +46,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public List<Contact> viewContacts() {
-		return contactRepository.findAll();
+	public List<Contact> viewContacts(String status) {
+		return contactRepository.findByStatus(status);
 	}
 	
 
@@ -226,6 +226,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Renewal> viewRenewals() {
 		return renewalRepository.findAll();
+	}
+
+	@Override
+	public void updateContactStatus(int id) {
+		contactRepository.setStatus("REPLIED", id);
 	}
 
 	
